@@ -1,0 +1,484 @@
+@charset "utf-8";
+
+
+.registerPageBg {
+    background: url("../img/thisThemeBg.jpg") center no-repeat;
+    background-size: cover;
+    justify-content: space-between;
+}
+
+.registerPageBg .registerPageTitle {
+    flex: none;
+    color: #6d767b;
+    background: none;
+    position: relative;
+}
+
+.registerPageBg .registerPageTitle .backLastPage {
+    border-top-color: #6d767b;
+    border-left-color: #6d767b;
+}
+
+.registerContentArea {
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, .5) 100%);
+    box-shadow: 0 2px 9px 0px #a5a5a5;
+    border-radius: 50px 50px 0 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+ul.program {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 10px 50px;
+    position: relative;
+    margin-bottom: 5px;
+    flex: none;
+}
+
+ul.program li {
+    flex: 0 1 auto;
+    display: block;
+    width: 60px;
+    height: 60px;
+    transition: all .1s;
+}
+
+ul.program li.active {
+    width: 80px;
+    height: 80px;
+    transition: all .1s;
+}
+
+ul.program li.setAcc {
+    background: url('../img/register/setAcc.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program li.setAcc.active {
+    background: url('../img/register/setAccActive.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program li.securityCode {
+    background: url('../img/register/securityCode.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program li.securityCode.active {
+    background: url('../img/register/securityCodeActive.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program li.registered {
+    background: url('../img/register/registered.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program li.registered.active {
+    background: url('../img/register/registeredActive.svg') center no-repeat;
+    background-size: contain;
+}
+
+ul.program::before {
+    content: "";
+    height: 2px;
+    width: calc(100% - 120px);
+    background: #fff;
+    box-shadow: 0 0 4px 0 #ccc;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: -1;
+    margin: auto;
+}
+
+.programContent {
+    display: none;
+    flex: 1;
+    padding-bottom: 1rem;
+}
+
+.programContent.active {
+    display: block;
+}
+
+.programTitle {
+    font-weight: 600;
+    margin: 0 auto 15px;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 1.25em;
+}
+
+.agents {
+    color: #c1c1c1;
+    font-weight: 200;
+    font-size: .95em;
+    margin-top: 5px;
+}
+
+form.registerForm {
+    width: inherit;
+    padding: 0 20px;
+}
+
+form.registerForm .invalid-feedback {
+    position: absolute;
+    right: 7em;
+    color: #dc3545;
+    font-size: 12px;
+    text-align: right;
+    margin: 0;
+    pointer-events: none
+}
+
+form.registerForm .recheckcodeFeedback {
+    right: 10em;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid,
+.form-control.is-valid,
+.was-validated .form-control:valid {
+    background-image: none;
+}
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
+    border-color: #1771a7;
+}
+
+form.registerForm label {
+    flex: none;
+    margin: 0 1em 0 0;
+}
+
+form.registerForm input,
+form.registerForm select {
+    flex: 1;
+    border-radius: 55px;
+    padding: 5px 20px;
+    border: 1px solid #1771a7;
+    box-shadow: none;
+    color: #1771a7;
+    font-size: .9em;
+    outline: none;
+    background: #fff;
+}
+
+/* Remove IE arrow */
+form.registerForm select::-ms-expand {
+    display: none;
+}
+
+/* Arrow */
+form.registerForm select.form-control,
+form.registerForm.was-validated select.form-control:valid {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: url('../img/register/appearance.svg') 92% 50% no-repeat;
+    background-size: auto 35%;
+}
+
+form.registerForm.was-validated select.form-control:invalid {
+    background: url('../img/register/appearanceInvalid.svg') 92% 50% no-repeat;
+    background-size: auto 35%;
+    color: transparent;
+}
+
+form.registerForm select option {
+    color: #6d767b;
+}
+
+form.registerForm input::placeholder,
+form.registerForm select:required:invalid,
+form.registerForm select option[disabled] {
+    color: #c1c1c1;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+.registerForm .form-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1em;
+}
+
+.registerForm fieldset.labelIsIcon label {
+    width: 25px;
+    height: 25px;
+}
+
+label[for="accId"] {
+    background: url('../img/register/accId.svg') center no-repeat;
+    background-size: contain;
+}
+label[for="parent"] {
+    background: url('../img/register/icon_referrer.svg') center no-repeat;
+    background-size: contain;
+}
+label[for="loginPwd"] {
+    background: url('../img/register/loginPwd.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="loginPwd2"] {
+    background: url('../img/register/loginPwd2.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="nickname"] {
+    background: url('../img/register/nickname.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="email"] {
+    background: url('../img/register/email.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="area"] {
+    width: 4em;
+    text-align: left;
+}
+
+label[for="realname"] {
+    background: url('../img/register/realname.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="question"] {
+    background: url('../img/register/question.svg') center no-repeat;
+    background-size: contain;
+}
+
+label[for="ans"] {
+    background: url('../img/register/ans.svg') center no-repeat;
+    background-size: contain;
+}
+
+
+button.formSumitBtn {
+    background: url('../img/register/formBtn.svg') center no-repeat;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+    display: block;
+    margin: 5px auto;
+    outline: none;
+}
+
+button.formSumitBtn:hover {
+    transform: scale(1.1);
+}
+
+button.formSumitBtn:active {
+    transform: scale(.9);
+}
+
+.pwdShowHide {
+    position: absolute;
+    right: 37px;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+    margin-right: 20px;
+}
+
+.registerForm .pwdShowHide input {
+    display: none;
+}
+
+.registerForm .pwdShowHide input+label {
+    width: 25px;
+    height: 20px;
+    background: #fff url('../img/register/pwdHide.svg') center right no-repeat;
+    background-size: 75% auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+.pwdShowHide input:checked+label {
+    width: 25px;
+    height: 20px;
+    background: #fff url('../img/register/pwdShow.svg') center right no-repeat;
+    background-size: 75% auto;
+    margin: 0;
+}
+
+.was-validated input.form-control:invalid::placeholder {
+    color: transparent;
+}
+
+.was-validated input.form-control:invalid~.pwdShowHide input+label {
+    width: 20px;
+    height: 20px;
+    background: url('../img/register/withdrawalPwdHide.svg') center no-repeat;
+    background-size: contain;
+    margin: 0;
+    cursor: pointer;
+}
+
+.was-validated input.form-control:invalid~.pwdShowHide input:checked+label {
+    width: 20px;
+    height: 20px;
+    background: url('../img/register/withdrawalPwdShow.svg') center no-repeat;
+    background-size: contain;
+    margin: 0;
+}
+
+.fieldsetIcon {
+    border: 0;
+    margin-top: .5rem;
+    margin-bottom: 1.25rem;
+    height: 25px;
+    position: relative;
+}
+
+.fieldsetIcon::before {
+    content: "";
+    height: 0;
+    border-top: 1px solid #283763;
+    width: 40%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+.fieldsetIcon::after {
+    content: "";
+    height: 0;
+    border-top: 1px solid #283763;
+    width: 40%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.withdrawalIcon {
+    background: url('../img/register/registerHr.svg') center no-repeat;
+    background-size: auto 100%;
+}
+
+.areaIcon {
+    background: url('../img/register/areaIcon.svg') center no-repeat;
+    background-size: auto 100%;
+}
+
+.fieldsetHr {
+    margin-top: .5rem;
+    margin-bottom: 1.25rem;
+    border-color: #283763;
+}
+
+.backgroundBGset .recheckcode_btn {
+    position: absolute;
+    right: 3em;
+    background: #2090fb;
+    color: #fff;
+    font-size: .75rem;
+    border-radius: 55px;
+    border: 0;
+    box-shadow: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+}
+.backgroundBGset .recheckcode_btn:hover,
+.backgroundBGset .recheckcode_btn:focus {
+    transform: none;
+}
+.backgroundBGset .recheckcode_btn:active {
+    background: #a5aeb6;
+    outline: none;
+}
+
+.backgroundBGset .recheckcode_btn[disabled] {
+    display: block;
+    background: #a5aeb6;
+}
+
+.programContent .registeredImg {
+    display: block;
+    margin: 15px auto;
+}
+
+.registeredContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.registeredContent h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.registeredContent p {
+    margin: 5px auto;
+    text-align: center;
+}
+.registeredContent .ans1 {
+    padding-left: 71px;
+    text-align: left;
+}
+    
+
+.registeredContent p>a,
+.registeredContent p>u {
+    color: #1f85b8;
+    border-bottom: 1px solid #1f85b8;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.registeredFailed h3,
+.registeredContent.registeredFailed p>a,
+.registeredContent.registeredFailed p>u {
+    color: #ec3d37;
+    border-color: #ec3d37;
+}
+
+.registeredSuccess h3 {
+    color: #09cf94;
+}
+
+.registeredContent .btnsGroup {
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/*20200922 註冊完成-體驗金banner ==========*/
+.payforex_banner{
+  width: 300px;
+}
+.payforex_banner img{
+  width: 100%;
+}
+/*20200922 註冊完成-體驗金banner E N D ===*/
