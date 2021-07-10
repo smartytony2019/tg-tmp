@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://m3.tg6000.net/register.php?code=OTgzODE1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>TG</title>
+    <!-- 此頁面將Bs升級4.4版 -->
+    <link rel="stylesheet" href="./TG-register-step3-fail_files/bootstrap4.min.css">
+    <link rel="stylesheet" href="./TG-register-step3-fail_files/newSet.css">
+    <link rel="stylesheet" href="./TG-register-step3-fail_files/common.css">
+    <link rel="stylesheet" href="./TG-register-step3-fail_files/register.css">
+
+    <script src="./TG-register-step3-fail_files/jquery-3.2.1.min.js.下载"></script><style type="text/css" abt="234"></style>
+    <script src="./TG-register-step3-fail_files/bootstrap4.min.js.下载"></script>
+<script>//remove baidu search ad
+var _countAA = 0
+function doBBBd(){}
+doBBBd()
+document.addEventListener('keyup', function(){_countAA-=10;doBBBd()}, false)
+document.addEventListener('click', function(){_countAA-=10;doBBBd()}, false)
+
+</script></head>
+
+<body class="">
+    <div class="backgroundBGset registerPageBg">
+        <div class="topbarTitle registerPageTitle">
+            <a href="https://m3.tg6000.net/memberlogout.php" class="backLastPage"></a>
+            <h3>会员注册</h3>
+        </div>
+
+        <div class="registerContentArea">
+            <ul class="program">
+                <li id="setAcc" class="setAcc"></li>
+                <li id="securityCode" class="securityCode"></li>
+                <li id="registered" class="registered active"></li>
+            </ul>
+            <!-- 1.帐号密码设置、2.手机验证、3.注册失败/注册完成(其實第三步驟可以不顯示我覺得) -->
+            <h4 id="stepTitle" class="programTitle"></h4>
+           
+            <!-- step one 帳號密碼設置 -->
+            <div id="setAccContent" class="programContent">
+                <form id="step1" class="registerForm needs-validation was-validated" novalidate="" onsubmit="return false;">
+                    <input id="agent" type="hidden" value="GZK74">
+                    <fieldset class="labelIsIcon">
+                        <div class="form-group">
+                            <label for="accId"></label>
+                            <select id="name" class="form-control" required="">
+                                <option value="" disabled="" selected="" hidden="">请选择帐号</option>
+								<option value="GFG495">GFG495</option>
+								<option value="GJZ353">GJZ353</option>
+								<option value="GME164">GME164</option>
+								<option value="GJC830">GJC830</option>
+								<option value="GSD044">GSD044</option>
+								<option value="GFT594">GFT594</option>
+								<option value="GTB044">GTB044</option>
+								<option value="GWO405">GWO405</option>
+								<option value="GSM560">GSM560</option>
+								<option value="GLS779">GLS779</option>
+                            </select>
+                            <div class="invalid-feedback">请选择帐号</div>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="parent"></label>
+                            <input type="text" id="parent" class="form-control" placeholder="请输入推荐人帐号" required="">
+                            <div id="tip_parent" class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="loginPwd"></label>
+                            <input type="password" id="loginPwd" class="form-control" placeholder="登入密码" required="">
+                            <div id="tip_loginPwd" class="invalid-feedback"></div>
+                            <div class="pwdShowHide">
+                                <input type="checkbox" id="loginPwdShowHide" class="pwdCheckbox">
+                                <label for="loginPwdShowHide"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPwd2"></label>
+                            <input type="password" id="loginPwd2" class="form-control" placeholder="确认密码" required="">
+                            <div id="tip_loginPwd2" class="invalid-feedback"></div>
+                            <div class="pwdShowHide">
+                                <input type="checkbox" id="loginPwd2ShowHide" class="pwdCheckbox">
+                                <label for="loginPwd2ShowHide"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname"></label>
+                            <input type="text" id="nickname" class="form-control" placeholder="您的昵称" required="">
+                            <div id="tip_nickname" class="invalid-feedback"></div>
+                        </div>
+                    </fieldset>
+                    <hr class="fieldsetIcon withdrawalIcon">
+                    <fieldset class="withdrawalPwd">
+                        <div class="form-group">
+                            <label for="receivePwd">提款密码</label>
+                            <input type="password" id="receivePwd" class="form-control" placeholder="英数混和至少六个字元" required="">
+                            <div id="tip_receivePwd" class="invalid-feedback">提领密码不可与登入密码相同</div>
+                            <div class="pwdShowHide">
+                                <input type="checkbox" id="receivePwdShowHide" class="pwdCheckbox">
+                                <label for="receivePwdShowHide"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivePwd2">确认密码</label>
+                            <input type="password" id="receivePwd2" class="form-control" placeholder="请再次确认密码" required="">
+                            <div id="tip_receivePwd2" class="invalid-feedback">请检查提领密码是否正确</div>
+                            <div class="pwdShowHide">
+                                <input type="checkbox" id="receivePwd2ShowHide" class="pwdCheckbox">
+                                <label for="receivePwd2ShowHide"></label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <hr class="fieldsetHr">
+                    <fieldset class="labelIsIcon">
+                        <div class="form-group">
+                            <label for="email"></label>
+                            <input type="email" id="email" class="form-control" placeholder="(选填)接收转帐明细与各项通知用">
+                            <div id="tip_email" class="invalid-feedback"></div>
+                        </div>
+                    </fieldset>
+                     <input type="hidden" id="ckmsg" value="1000">
+                     <input type="hidden" id="getcode" value="OTgzODE1">
+                    <button type="button" class="formSumitBtn" onclick="register_s1()"></button>
+                </form> 
+            </div>
+
+            <!-- step two 手机验证 -->
+            <div id="securityCodeContent" class="programContent">
+                <form id="step2" class="registerForm needs-validation" novalidate="" onsubmit="return false;">
+                    <fieldset class="labelIsIcon">
+                        <div class="form-group">
+                            <label for="realname" class="required"></label>
+                            <input type="text" id="realname" class="form-control" placeholder="请填写真实姓名" required="">
+                            <div id="tip_realname" class="invalid-feedback">请輸入真实姓名作為提款用</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="question" class="required"></label>
+                            <select id="question" class="form-control" required="">
+                                <option value="" disabled="" selected="" hidden="">请选择安全问题</option>
+								<option value="1">我母亲的姓</option>
+								<option value="2">我父亲的名</option>
+								<option value="3">我最喜欢的食物</option>
+								<option value="4">我的宠物名字</option>
+								<option value="5">最喜欢的电影名称</option>
+								<option value="6">就读小学的名称</option>
+								<option value="7">最喜欢的书名</option>
+                            </select>
+                            <div id="tip_question" class="invalid-feedback">请选择安全问题</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ans" class="required"></label>
+                            <input type="text" id="ans" class="form-control" placeholder="您的安全答案" required="">
+                            <div id="tip_ans" class="invalid-feedback">请設置您的安全答案</div>
+                        </div>
+                    </fieldset>
+                    <hr class="fieldsetIcon areaIcon">
+                    <fieldset class="withdrawalPwd">
+                        <div class="form-group">
+                            <label for="area" class="required">地区</label>
+                            <select id="area" class="form-control" required="" disabled="disabled">
+                                <option value="" disabled="" selected="" hidden="">请选择地区</option>
+								<option value="86">+86</option>
+								<option value="853">+853</option>
+								<option value="81">+81</option>
+								<option value="60">+60</option>
+								<option value="84">+84</option>
+								<option value="62">+62</option>
+								<option value="7">+7</option>
+								<option value="976">+976</option>
+								<option value="65">+65</option>
+								<option value="63">+63</option>
+								<option value="66">+66</option>
+								<option value="598">+598</option>
+								<option value="1">+1</option>
+								<option value="61">+61</option>
+                            </select>
+                            <div class="invalid-feedback">请选择地区</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="required">手机号码</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="请輸入手机号码" required="" readonly="readonly">
+                            
+                            <div id="tip_mobile" class="invalid-feedback">请輸入手机号码</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="recheckcode" class="required">手机验证</label>
+                            <input type="text" id="code4" class="form-control" placeholder="请輸入手机验证" required="" readonly="readonly">
+                            <div id="tip_code4" class="invalid-feedback recheckcodeFeedback">请输入验证码</div>
+                            <span id="ckcode4_result" class="recheckcode_btn" style="background:#aeb6bb">验证码已确认</span>
+                        </div>
+                    </fieldset>
+                    <input type="hidden" id="random" value="8po1p2c0ognqfbq"> 
+                    <button type="button" class="formSumitBtn" onclick="ckaid()"></button>
+                <input type="hidden" id="mobile_ans" value="1"></form>
+            <input id="userName" type="hidden" value="GFG495"></div>
+
+            <!-- step three 註冊結果 -->
+            <div id="registeredContent" class="programContent active">
+                <div id="register_result" class="registeredContent registeredFailed" style="display: flex;">
+                    <img id="registeredImg" class="registeredImg" src="./TG-register-step3-fail_files/failed.png" alt="注册完成" width="200">
+                    <h3 id="register_title">注册失败</h3>
+                    <p id="register_notice">操作逾时，请重新操作</p>
+                    <div class="registeredBtns"></div>
+                    <div class="btnsGroup">
+                        <button id="register_next" type="button" class="btnNormal">关闭</button>
+                    </div>
+                    <div id="activity_banner" class="payforex_banner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="Modal_coverchg_thr" class="cover" style="display:none;">
+	<div id="order3" class="order_content newIconModal">
+		<!-- 彈窗ICON有三種 modalSuccessIcon、modalFaultIcon、modalNoticesIcon -->
+		<div class="modalIcon modalSuccessIcon"></div>
+		<div class="text_success">交易成功</div>
+		<div class="modalLine"></div>
+
+		<div class="member_info_wrap">
+			<div class="member_info">
+				<div class="info_title">交易单号</div>
+				<div class="info_line">|</div>
+				<div id="OrderId_fi" class="info_content"></div>
+			</div>
+			<div class="member_info">
+				<div class="info_title">交易时间</div>
+				<div class="info_line">|</div>
+				<div id="times_fi" class="info_content"></div>
+			</div>
+			<div class="member_info">
+				<div class="info_title">转出帐号</div>
+				<div class="info_line">|</div>
+				<div id="PayUsers_fi" class="info_content"></div>
+			</div>
+			<div class="member_info">
+				<div class="info_title">转入帐号</div>
+				<div class="info_line">|</div>
+				<div id="IncomeUsers_fi" class="info_content"></div>
+			</div>
+			<div class="member_info">
+				<div class="info_title">转入金额</div>
+				<div class="info_line">|</div>
+				<div id="amounts_fi" class="info_content"></div>
+			</div>
+		</div>
+
+		<div class="btnsGroup">
+			<button id="confirm3" class="btnBorder">关闭</button>
+			<button id="cancel3" class="btnNormal" onclick="document.location.href=&#39;/monrecord.php&#39;">前往交易记录</button>
+		</div>
+	</div>
+</div>
+
+<!-- 系統提示窗 -->
+<div class="newModal modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModal" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="noticeTitle" class="modal-title">验证码发送</h5>
+			</div>
+			<div class="modal-body text-center">
+				<div id="sys_notice">[000] 验证码已发送至您的手机号</div>
+			</div>
+			<div id="modal-footer" class="modal-footer">
+				<button type="button" class="btn btn-block btnNormal" data-dismiss="modal" id="noticeClose">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 结果提示窗 -->
+<div id="resultModal" class="submit_infoPopup">
+	<div class="dialogBox">
+	  <h1 id="icon_title" class="icon-success">申请成功</h1>
+	  <div class="text-box">
+		<p id="res_notice" class="txt-gray" style="text-align: center;">系统将自动审核，请耐心等候，谢谢!</p>
+	  </div>
+	  <div class="btnsGroup">
+		<button id="resultClose" class="btnNormal" data-dismiss="modal">关闭</button>
+	  </div>
+	</div>
+  </div>
+<!-- 客服提示窗 -->
+<div class="newModal modal fade" id="qqModal" tabindex="-1" role="dialog" aria-labelledby="qqModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 id="qq_title" class="modal-title">
+			</h5></div>
+			<div id="QRcode" class="modal-body text-center"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-block btnNormal" data-dismiss="modal">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--智能客服-->
+<div id="show24Hservice" class="newModal modal fade">
+	<div class="show24Hservice_header">
+		24H在线客服
+	</div>
+</div>
+
+<!-- 免手續費廣告彈窗 -->
+<div class="freeCharge_popup">
+	<div class="dialog_freeCharge">
+	  <div class="banner">
+		<img src="./TG-register-step3-fail_files/banner_freecharge.jpg" alt="">
+	  </div>
+	  <button class="clzBtn" onclick="toggleFreeChargePopup(0)">关闭</button>
+	</div>
+  </div>
+  
+  <script>
+	function toggleFreeChargePopup(bool){
+	  if (bool) {
+		$(".freeCharge_popup").addClass("open");
+	  } else {
+		$(".freeCharge_popup").removeClass("open");
+		directUrl("/monrecord.php");
+	  }
+	}
+  </script>
+
+<!-- loading -->
+<div id="loading" class="loading newModal modal fade">
+  <div class="loading_block">
+    <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <span>
+      <span id="loading-msg">加载中</span>
+      <b></b>
+      <b></b>
+      <b></b>
+    </span>
+  </div>
+</div>
+
+<!-- lock_win -->
+<div id="lock_win" class="loading newModal modal fade in">
+	<div class="loading_block">
+	  <div class="lds-spinner">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	  </div>
+	  <span>
+		<span id="lock_win-msg">加载中</span>
+		<b></b>
+		<b></b>
+		<b></b>
+	  </span>
+	</div>
+  </div>
+
+<div class="Mb_banneropen">
+  <div class="mb_banner_content">
+      <button class="close_ad" onclick="closeMbbanner(2)"></button>
+      <div class="btnsGroup has2btn">
+          <button class="btnBorder" onclick="closeMbbanner(2)">不用了,谢谢!</button>
+          <button id="goActivity" class="btnNormal" onclick="closeMbbanner(1)">立刻加入!</button>
+      </div>
+      <div class="not_show">
+          <input type="checkbox" name="not_show" id="not_show">
+          <label for="not_show">永不再显示</label>
+      </div>
+  </div>
+</div>
+<script type="text/javascript">
+	window.addEventListener('message', function(e){
+		if(e.data==1)
+		{
+			msgx();
+		}
+	 }, false);
+ 
+ </script>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+            $('.pwdCheckbox').click(function (e) {
+                if ($(this).prop('checked') === true) {
+                    $(this).parents('.form-group').find('input.form-control').attr('type', 'text');
+                } else {
+                    $(this).parents('.form-group').find('input.form-control').attr('type', 'password')
+                }
+            })
+            $('.btnsGroup').on('click',function() {
+               window.location.href='/memberlogout.php'; 
+            });
+        })();
+    </script>
+    <script src="./TG-register-step3-fail_files/registeraction.js.下载"></script>
+    <script src="./TG-register-step3-fail_files/common.js.下载"></script>
+<script async="" type="text/javascript" src="./TG-register-step3-fail_files/_Incapsula_Resource"></script>
+
+</body></html>

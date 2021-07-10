@@ -1,0 +1,886 @@
+@charset "utf-8";
+
+.backgroundBGset {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        'Microsoft JhengHei',
+        sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+.backgroundBGset {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.backgroundBGset .topbarTitle {
+    flex: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 11;
+}
+
+.backgroundBGset .topbarTitle h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+    margin: 0;
+}
+
+.backgroundBGset .topbarTitle .backLastPage {
+    flex: none;
+}
+
+.backgroundBGset a.backLastPage {
+    width: 13px;
+    height: 13px;
+    border-top: 3px solid;
+    border-left: 3px solid;
+    transform: rotate(-45deg);
+    border-radius: 1px;
+    border-color: #ffffff;
+}
+
+.backgroundBGset a.backLastPage:hover,
+.backgroundBGset a.backLastPage:focus {
+    transform: rotate(-45deg) scale(1.1);
+}
+
+.backgroundBGset a.backLastPage:active {
+    transform: rotate(-45deg) scale(.9);
+}
+
+.contentBodySection {
+    flex: 1;
+    padding: 50px 1rem 2rem 1rem;
+}
+
+/* 2021 活動大廳 */
+.backgroundBGset {
+  /* color: #6d767b; */
+  background: #f4f2f0;
+  font-family: -apple-system,BlinkMacSystemFont,'Microsoft JhengHei',sans-serif;
+  font-size: 14px;
+}
+
+.topbarTitle {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 50px;
+  background: url("../img/common/bg_header.png") no-repeat center;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.topbarTitle .inquiry_btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 13px;
+  color: #fff;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 30px;
+  background: #fff;
+  color: #283763;
+}
+
+
+/*活動大廳*/
+.backgroundBGset .event_hall {
+  width: 100%;
+}
+
+.backgroundBGset .event_hall input[type="radio"] {
+  display: none;
+}
+.backgroundBGset input[type="radio"] {
+  display: none;
+}
+
+.backgroundBGset .event_type {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  
+  background: linear-gradient(to bottom, #ffffff, #e8f1ff);
+  -webkit-box-shadow: 0 1px 3px 0px #adadad;
+          box-shadow: 0 1px 3px 0px #adadad;
+  z-index: 10;
+}
+
+.backgroundBGset .event_hall .event_type #now_type {
+  font-size: 15px;
+  line-height: 40px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.backgroundBGset .event_hall .event_type #now_type::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: url("../img/event_hall/type_btns.png") center no-repeat;
+  background-size: contain;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.backgroundBGset .type_content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.backgroundBGset .type_content.active {
+  opacity: 1;
+  z-index: 9999;
+  visibility: visible;
+}
+
+.backgroundBGset .type_content .type_list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  border-radius: 5px;
+  background: #fff;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.backgroundBGset .type_content button {
+  position: relative;
+  width: 100%;
+  height: 65px;
+  line-height: 65px;
+  font-size: 22px;
+  color: #343f51;
+  font-weight: 400;
+  background: transparent;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #efefef;
+  display: block;
+  padding: 0 15px;
+  outline: none;
+}
+
+.backgroundBGset .type_content button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);            
+  background: url("../img/event_hall/category_panel_btn_off.png") 50% no-repeat;
+  background-size: cover;
+}
+
+.backgroundBGset .type_content button.active::before {
+  background: url("../img/event_hall/category_panel_btn_on.png") 50% no-repeat;
+  background-size: cover;
+}
+
+.backgroundBGset .type_content input:checked + label {
+  color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9dc3e6), to(#3877b0));
+  background: -webkit-linear-gradient(top, #9dc3e6, #3877b0);
+  background: linear-gradient(to bottom, #9dc3e6, #3877b0);
+}
+
+.backgroundBGset .type_content input:checked + label::before {
+  background: url("../img/event_hall/category_panel_btn_on.png") 50% no-repeat;
+  background-size: cover;
+}
+
+.backgroundBGset .event_hall .event_tabs {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 40px;
+  background-image: linear-gradient(to bottom, #ffffff 0%, #e8f1ff 90%);
+  z-index: 15;
+}
+
+.backgroundBGset .event_hall .event_tabs label {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 15px;
+  line-height: 40px;
+  height: 40px;
+  border: none;
+  color: #707070;
+  margin-bottom: 0;
+}
+
+.backgroundBGset .event_hall .event_tabs label::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 15px;
+  background-color: #707070;
+  right: 0;
+  top: 12px;
+}
+
+.backgroundBGset .event_hall .event_tabs label:nth-last-child(1):before{
+  display: none;
+}
+
+.backgroundBGset .event_hall input.tab-selector-1:checked ~ .event_tabs .tab-label-1,
+.backgroundBGset .event_hall input.tab-selector-2:checked ~ .event_tabs .tab-label-2,
+.backgroundBGset .event_hall input.tab-selector-3:checked ~ .event_tabs .tab-label-3 {
+  border-bottom: 0;
+  color: #3078eb;
+  margin-bottom: 0;
+}
+
+.backgroundBGset .event_hall input.tab-selector-1:checked ~ .event_tabs .tab-label-1::after,
+.backgroundBGset .event_hall input.tab-selector-2:checked ~ .event_tabs .tab-label-2::after,
+.backgroundBGset .event_hall input.tab-selector-3:checked ~ .event_tabs .tab-label-3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background: #3078eb;
+  z-index: 100;
+}
+
+.backgroundBGset .event_hall input.tab-selector-1:checked ~ .content .content-1,
+.backgroundBGset .event_hall input.tab-selector-2:checked ~ .content .content-2,
+.backgroundBGset .event_hall input.tab-selector-3:checked ~ .content .content-3 {
+  display: block;
+  opacity: 1;
+}
+
+.backgroundBGset .event_hall .event_hall_list {
+  position: relative;
+  width: 100%;
+  margin-top: 6rem;
+  /* margin-top: 30px; */
+  /* padding: 1px 0 20px; */
+  /* border-radius: 0 3px 3px 3px; */
+}
+/* .content:first-child {
+  padding-top: 85px;
+} */
+.backgroundBGset .event_hall .content {
+  position: relative;
+  padding-bottom:0px;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner {
+  margin-top: 25px;
+  position: relative;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner.coming_soon::before {
+  content: "即将开放";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner.finish {
+  opacity: .9;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner.finish::before {
+  content: "活动已结束";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #ec3d37;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(244, 242, 240, 0.65);
+  z-index: 10;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a .moreInfo {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 130px;
+  height: 30px;
+  background: url("../img/event_hall/moreInfo.svg") center no-repeat;
+  background-size: contain;
+  color: #363636;
+  line-height: 32px;
+  text-align: center;
+  padding-left: 15px;
+  font-weight: 600;
+  font-size: 12px;
+  z-index: 1;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a .moreInfo.secondStyle {
+  background: url("../img/event_hall/moreInfo-2.svg") center no-repeat;
+  background-size: contain;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a .bannerTitle {
+  font-weight: 300;
+  text-align: left;
+  color: #363636;
+  font-size: 12px;
+  margin: 2px 0 0;
+  padding-left: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a .bannerImg {
+  width: 100vw;
+  height: auto;
+  min-height: 135px;
+  background: #eee;
+  margin: 0;
+}
+
+.backgroundBGset .event_hall .content ul {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  list-style-type: none;
+}
+
+.backgroundBGset .event_hall .content ul li {
+  background: #fff;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  -webkit-box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.backgroundBGset .event_hall .content ul li .pic {
+  display: block;
+}
+
+.backgroundBGset .event_hall .content ul li .pic img,.backgroundBGset .event_hall .content ul li .pic video {
+  width: 100%;
+  display: block;
+}
+
+
+.backgroundBGset .event_hall .content ul li .event_list .event_group {
+  position: relative;
+  border-top: 1px solid #d6d6d6;
+  padding: 10px 20px;
+}
+
+.backgroundBGset .event_hall .content ul li .event_list .event_group:nth-child(1) {
+  border-top: 0;
+}
+
+/* .backgroundBGset .event_hall .content ul li.active .event_list .event_group {
+  display: block;
+} */
+
+.backgroundBGset .event_hall .content ul li .event_group.attention::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1771a7;
+}
+
+.backgroundBGset .event_hall .content ul li .event_group .event_row {
+  line-height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.backgroundBGset .event_hall .content ul li .event_group .event_row span {
+  width: 65px;
+  text-align: left;
+}
+
+.backgroundBGset .event_hall .content ul li .event_group .event_row b {
+  font-weight: normal;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: left;
+  word-break: break-all;
+}
+
+.backgroundBGset .event_hall .content ul li .event_group .event_row b.red_f {
+  color: #ec3d37;
+}
+
+.backgroundBGset .event_hall .content .nodata {
+  width: 100%;
+  height: 160px;
+  margin: 150px auto 0;
+  padding-top: 160px;
+  background: url("../img/bg-nodata.png") center no-repeat;
+  background-size: 70%
+}
+
+.backgroundBGset .event_hall .content-1,
+.backgroundBGset .event_hall .content-2,
+.backgroundBGset .event_hall .content-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 95px 0 20px;
+  /* color: #363636; */
+  background-color: transparent;
+  display: none;
+}
+
+.backgroundBGset .event_hall .event_content {
+  position: relative;
+  padding: 50px 0;
+  padding-bottom: 0;
+}
+
+.backgroundBGset .event_hall .event_content img {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.backgroundBGset .event_hall .event_content .share_btn .icon-share{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+  width: 30px;
+  height: 48px;
+  background: url("../img/event_hall/icon-share.svg") no-repeat center;
+  background-size: 20px;
+}
+
+.event_popup {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+  border-radius: 15px 15px 0 0;
+  background: url("../img/secondThemeBg.jpg") center no-repeat, #fff;
+  background-size: cover;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  overflow-y: auto;
+}
+
+.event_popup .popup_content {
+  width: 100%;
+  padding: 50px 0 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.event_popup .popup_content .popup_box {
+  width: 90%;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  padding: 0 0 20px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.event_popup .popup_content .popup_box .popup_title {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: #ffffff;
+  background: linear-gradient(to right, #6cacfb, #3868c7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.event_popup .popup_content .popup_box .popup_row {
+  width: 100%;
+  margin: 8px 0;
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.event_popup .popup_content .popup_box .popup_row input,
+.event_popup .popup_content .popup_box .popup_row select {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 34px;
+  border-radius: 4px;
+  padding: 0 10px;
+  border: 1px solid #d6d6d6;
+}
+
+.popup_box input.error::placeholder,.captchaBox .inputGroup input.error::placeholder {
+  color: #f87756;
+}
+
+.popup_box input.error::-webkit-input-placeholder,.captchaBox .inputGroup input.error::-webkit-input-placeholder {
+  color: #f87756;
+}
+
+.popup_box input.error:-ms-input-placeholder,.captchaBox .inputGroup input.error:-ms-input-placeholder {
+  color: #f87756;
+}
+
+.popup_box input.error::-moz-placeholder,.captchaBox .inputGroup input.error::-moz-placeholder {
+  color: #f87756;
+}
+
+.event_popup .popup_content .popup_box .popup_row select {
+  color: #1771a7;
+  background: #ffffff;
+  width: 100%;
+}
+
+.event_popup .popup_content .popup_box .popup_row select.date_range {
+  margin-right: 10px;
+  flex: 0.3;
+}
+
+.event_popup .popup_content .popup_box .popup_row .member_acc {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.event_popup .popup_content .popup_box .popup_row .code {
+  width: 90px;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.event_popup .popup_content .popup_box .popup_row .code img {
+  width: 100%;
+  padding: 0;
+  height: 32px;
+}
+
+.event_popup .popup_content .popup_box .mb_info {
+  margin-top: 15px;
+  width: 100%;
+  padding: 0 30px;
+  text-align: left;
+  line-height: 20px;
+}
+
+.popup_box .mb_info span{
+  display: block;
+  line-height: 22px;
+  padding: 3px 0;
+}
+
+#data_time{
+  border: 0;
+}
+
+
+/* 進度審核 */
+#query_popup{
+  z-index: 11;
+}
+
+.review_pass{
+  margin-top: 20px;
+}
+
+.backgroundBGset .event_hall .content ul li .event_list{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  padding-bottom: 30px;
+}
+
+.backgroundBGset .event_hall .content ul li.active .event_list{
+  height: 100%;
+  overflow: auto;
+  transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.event_list .toggleOPENevent{
+  width: 100%;
+  height: 30px;
+  background:  linear-gradient( to bottom ,#fbfbfb ,#e6e6e6 );
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.event_list .toggleOPENevent b{
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  background: url('../img/event_hall/icon-toggle-event.svg') no-repeat center;
+  background-size: 18px;
+}
+
+.backgroundBGset .event_hall .content ul li.active .event_list .toggleOPENevent b{
+  transform: rotate(180deg);
+}
+
+/* 分享按鈕 */
+.event_hall .btnsGroup{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #f4f2f0;
+  padding: 10px 0;
+}
+.event_hall .btnNormal{
+  border: 0;
+  border-radius: 3px;
+  background: linear-gradient(to right, #2090fb , #9151f3);
+  color: #fff;
+  box-shadow: none;
+  cursor: pointer;
+  word-break: keep-all;
+  height: 50px;
+  line-height: 50px;
+
+}
+
+.backgroundBGset .event_hall .content .ActivitBanner a .moreInfo:nth-child(even)
+{
+  background: url('../img/event_hall/moreInfo-2.svg') center no-repeat;
+  background-size: contain;
+}
+
+/* 20210318_activity 新增 申請開啟提領按鈕 */
+.event_hall .btnsGroup{
+  padding: 25px;
+}
+
+.event_hall .btnsGroup.has2btn button {
+  margin: 0 3%;
+}
+.event_hall .btnsGroup .btnNormal{
+  font-size: 18px;
+}
+.event_hall .btnsGroup .btnNormal.share_btn{
+  background: linear-gradient(to bottom, #2090fb , #9151f3) no-repeat;
+}
+
+.event_hall .btnsGroup .btnNormal:disabled{
+  background: #a4a4a4;
+}
+
+
+.submit_infoPopup .dialogBox .text-box .eventhall_name{
+  margin-bottom: 10px;
+  color: #283763;
+}
+
+.submit_infoPopup .dialogBox .text-box .eventhall_name u{
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #f1f1f1;
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
+/* 增加箭頭 判斷 >1則  li加:event_arrow 感恩 */
+.backgroundBGset .event_hall .content ul li.event_arrow::after{
+  content:"";
+  display:block;
+  height:30px;
+  width:100%;
+  background: url('../img/event_hall/icon-toggle-event.svg') no-repeat center;
+  background-size: 18px;
+}
+
+.backgroundBGset .event_hall .content ul li.active.event_arrow::after{
+  transform: rotate(180deg);
+}

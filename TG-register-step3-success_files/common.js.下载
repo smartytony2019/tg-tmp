@@ -1,0 +1,736 @@
+var equipmentInfo={};
+window.addEventListener('pageshow', function(event) {
+    var broswer=getBroswer();
+    var vga=getVGA();
+    equipmentInfo['ua']=broswer['ua'];
+    equipmentInfo['broswer']=broswer['broswer'];
+    equipmentInfo['vga']=vga['locator'];
+});
+
+//提示窗控制
+function msg(info)
+{
+    var title=(info['title']=='') ? '系统提醒' :info['title'] ;
+    $('#noticeModal').modal("show");
+    $('#noticeTitle').html(title);
+    $("#sys_msgtitle").html('')
+    $('#sys_notice').html(info['reCode']+' '+info['reMsg']);
+    $('#noticeClose').click(function(){
+        $('#noticeModal').modal("hide");
+        $('.modal-backdrop').removeClass('show');
+        if (info['nextUrl']) {
+            directUrl(info['nextUrl']);
+        }
+    });
+
+}
+
+//icon提示窗控制 
+function resultmsg(info)
+{
+    var title=(info['title']=='') ? '系统提醒' :info['title'] ;  
+    var icon={0:'icon-error',1:'icon-success',2:'icon-warning'};
+    $('#resultModal').modal("show");
+    $('#icon_title').removeClass().addClass(icon[info['status']]).html(title);
+    var content = info['reMsg'];
+    
+    if (info['reCode']) {
+        content = info['reCode'] + ' ' + content;
+    }
+
+    $('#res_notice').html(content);
+    $('#resultClose').click(function(){
+        $('#resultModal').modal("hide");
+        if (info['nextUrl']) {
+            directUrl(info['nextUrl']);
+        }
+    });
+
+}
+//關閉視窗
+function msgx()
+{
+    $('.newModal').hide();
+    $('.loginModal').hide();
+    $('.modal-backdrop').hide();
+    $("#Modal_cover").css('display', 'none');
+
+}
+//導至位址
+function directUrl(url) {
+    document.location.href = url;
+    window.focus();
+}
+//格式验证-檢查提領帳戶
+function ckAccountName( ckStr )
+{
+    var ckStrang = /[`'*!?@=><,.:;|}{)(#\$%\^&\*+]+/g;
+    var ckIndexNum = /\d/;
+
+    if( ckIndexNum.test( ckStr ) )
+    {
+        return 'Contains numbers';
+    }
+    else if( ckStrang.test( ckStr ) )
+    {
+        return 'Contains symbols';
+    }
+    
+    return true;
+}
+/*格式驗證-僅允許中英文+數字*/
+function ckeck_ch_eng_num(str) {
+    var standard=/^[\u4E00-\u9FA5A-Za-z0-9]+$/;//中文+英文+阿拉伯數字'
+    if(standard.test(str)) 
+    {
+        return true;
+    }
+    return false; 
+}
+//格式验证-检查电邮格式
+function ismail(ckStr)
+{
+    var ckmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+    if(!ckmail.test( ckStr ) )
+    {
+        return 'not a mail';
+    }
+    return true;
+}
+
+//格式验证-检查微信格式
+function wechatCK(wechat)
+{
+    var re1 = /^([a-zA-Z0-9_\-])+$/;
+    if(!re1.test( wechat ) )
+    {
+        return 'not allow';
+    }
+
+    return true;
+}
+//呼叫客服
+function icon(value,img)
+{
+    var title=(value=='QQ') ? value : '微信';
+    $('#qq_title').html('TG客服【'+title+'扫一扫】');
+    $('#QRcode').html('<img src="'+img+'" class="QQ_qrcode" width="100%" height="100%">');
+    $("#Modal_cover").css('display','block');
+    $('#qqModal').modal('show');
+    $('.btn-block').removeAttr("style");
+    $('#qqModal').css('display','block');
+}
+
+function get24HR()
+{
+    // icon('serviceOnline');
+    // return false;
+    loadingCtrl(1);
+    var service=new Object;
+    service['type']='24h';
+    Actions = jQuery.ajax({
+        type: 'POST',
+        url: '/ac_service.php',
+        data:service,
+        error: function(xhr) {
+
+        },
+        beforeSend: function(result) {
+
+            loadingCtrl(1);
+        },
+        success: function(response) {
+            
+            loadingCtrl(0);
+            let result = JSON.parse(response);
+
+            if (result.statusCode == 0) {
+                let payload = result.payload;
+
+                if (payload.openLink == 1) {
+                window.open(payload.serviceUrl, '_blank');
+                } else {
+
+                if (!payload.serviceUrl || payload.serviceUrl.indexOf("http") < 0) {
+                    $('#noticeTitle').html('系统提醒');
+                    $('#sys_notice').html('<div style="padding: 3em;color:#707082"></h3></h3><h3>客服系统维护中</h3><h3>请稍后再试</h3></div>');
+                    $('#noticeModal').modal("show");
+                } else {
+                    $('#show24Hservice').modal("show").css("display","block");
+                    $('iframe').remove();
+                    $('#show24Hservice').append('<iframe src="'+payload.serviceUrl+'" frameborder="0" scrolling="auto" class="service_frame"></iframe>');
+                }
+                }
+            }
+       }
+    });
+}
+function getServiceWay(callback)
+{
+    Actions = jQuery.ajax({
+        type: 'POST',
+        url: '/ac_service.php',
+        error: function(xhr) {
+
+        },
+        beforeSend: function(result) {
+           
+        },
+        success: function(answer) {
+            //alert(answer);
+            var res
+            if(answer=='nodata')
+            {
+                return callback(res='');
+            }
+            var res=JSON.parse(answer);
+            if(res=='[]')
+            {
+                return callback(res='');
+            }
+            return callback(res);
+        }
+    });
+}
+
+function goService()
+{
+    getServiceWay(function(answer)
+    {
+        if(answer!='')
+        {
+           directUrl('/service.php');
+        }
+        else
+        {
+            get24HR();
+        }
+    });
+}
+
+/*siteStatus*/
+    $(document).ready(function() {
+        if ($("#errorcode").length > 0 && $("#errorcode").val()=='1900') {
+           msg( {"title":"","reCode":'' ,"reMsg":$('#description').val()} );
+        }
+    });
+
+
+//更換驗證圖片
+function repic(func='',value='')
+{
+    var data = new Object;
+    data['func'] = func;
+    data['step'] = 'Getpic';
+    var id=(value) ? value : '';
+    Actions = jQuery.ajax({
+            type: 'POST',
+            data: data,
+            url: '/ac_repic.php',
+        
+            error: function(xhr)
+            {
+                
+            },
+            beforeSend:function(result)
+            {
+                
+            },
+            success: function(answer)
+            {   
+                if(id!='')
+                {
+                    $('#'+id).attr("src", "data:image/jpeg;base64," + answer);
+                }
+                else
+                {   
+                    $('#pic').attr("src","data:image/jpeg;base64,"+answer);
+                }
+               
+                
+            }
+        });
+}
+
+function loadingCtrl(actionValue, msg = '加载中')
+{
+    var setStatus = (actionValue==1) ? 'block': 'none';
+    var setmodal  = (actionValue==1) ? 'show' : 'hide';
+    
+    $('#loading').modal(setmodal).css('display',setStatus);
+
+    $('#loading-msg').html(msg);
+
+    if(actionValue==0)
+    {
+        $('.modal-backdrop').remove();
+    }
+}
+
+function lockWinCtrl(actionValue, msg = '处理中，请稍后...')
+{
+    var setStatus = (actionValue==1) ? 'block': 'none';
+    $('#lock_win').css('display', setStatus);
+
+    $('#lock_win-msg').html(msg);
+}
+
+//千分位转换
+function toCurrency(num){
+    var parts = num.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+}
+
+//检查图片
+function check_pic(info,callback)
+{
+    var data = new Object;
+    data['step'] = 'ckpic';
+    data['patternCode'] = info['patternCode'];
+    data['func'] = info['func'];
+    Actions = jQuery.ajax({
+        type: 'POST', 
+        data: data,
+        url: '/ac_repic.php',
+        error: function(xhr) {
+
+        },
+        beforeSend: function(result) {
+
+            //loadingCtrl(1);
+        
+        },
+        success: function(answer) {
+            if(answer.trim()=="0000")
+            {
+                return callback(1);
+            }
+            return callback(2);
+        
+        }
+    });
+}
+
+//更新會員餘額
+function reLoadUserInfo() {
+    //console.log( 'reLoadUserInfo()');
+
+    var iData = new Object;
+    iData['noCache'] = 1; //設定是否重設市場項目Cache(剛交易後，取得新的資料)
+    Actions = jQuery.ajax({
+        type: 'POST',
+        url: '/ac_memberInfo.php',
+        data: iData,
+        error: function(xhr) {},
+        beforeSend: function(result) {},
+        success: function(response) {
+            var reArr = JSON.parse(response);
+            $('#totalAssetsView').html(reArr.totalAssets);
+            $('#memberQuota').val(reArr.quota);
+            $('#memberMoney li .txt-right:nth-child(1)').html(reArr.quotaView);
+            $('#memberMoney li .txt-right:nth-child(2)').html(reArr.stayRewardView);
+            $('#memberMoney li .txt-right:nth-child(3)').html(reArr.trialQuotaView);
+            if(reArr.trialEvent==1)
+            {
+                $('#memberMoney li:nth-child(3)').removeAttr('style');
+            }
+        }
+    });
+}
+
+/*廣告引導-微商/體驗金*/
+function showMbbanner() {
+    $('.Mb_banneropen').addClass('active');
+    if($('#adv_info').val()==2){
+        $('#not_show').attr("checked","checked");
+    }
+}
+
+function closeMbbanner(close) {
+    if($('#not_show').is(":checked"))
+    {
+        changeAdvSet(0);
+    }
+    else
+    {
+        changeAdvSet(1);
+    }
+    if(close==1)
+    {
+        goWS();
+    }
+    $('.Mb_banneropen').removeClass('active');
+    var url=location.pathname;
+    if(url=='/indexCenter.php')
+    {
+        unread_notice();
+    }
+}
+
+function changeAdvSet(set)
+{
+    var url=location.pathname;
+    var adv=new Object;
+    adv['advSet']=set;
+    adv['advtype']=(url=='/indexCenter.php') ? '2' :'1';
+    adv['function']='advSetting';
+    
+    jQuery.ajax({
+        type: 'POST',
+        url: '/ac_advshow.php',
+        data: adv ,
+        error: function(xhr) {
+            return false;
+        },
+        beforeSend:function(response)
+        {
+            
+        },
+        success: function(response) {
+        
+        }
+    });
+}
+
+function getRandom()
+{
+    var characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+　　var randomCode = '';
+　　for (var i = 0; i < 30; i++ ) 
+    {
+        var randomPoz  = Math.floor(Math.random() * characters.length);
+        randomCode += characters.substring(randomPoz,randomPoz +1);
+
+　　}
+　　return randomCode;
+}
+
+
+function getmarquee()
+{
+    jQuery.ajax({
+        type: 'POST',
+        url: '/ac_announce.php',
+        data: 'type=peronalNotice' ,
+        error: function(xhr) {
+            return false;
+        },
+        beforeSend:function(response)
+        {
+            
+        },
+        success: function(response) {
+            $('#marqinfo').html(response);
+            $('.announcement_btn,.mail').toggle();
+        }
+    });
+}
+
+function titleannice()
+{
+    $('#markettitle,#marqinfo').toggle();
+}
+
+
+function goWS()
+{
+    $.ajax({
+        type: 'POST',
+        url: '/ac_connect.php',
+        data: 'function=getdataH5&head='+ location.protocol ,        
+        error: function (xhr) {
+        },
+        beforeSend: function (response) {
+        
+        },
+            success: function (response) {
+            if(response!='')
+            {
+                window.location.href=response;
+            }
+        }
+    });
+    
+}
+function getSmart()
+{
+    $.ajax({
+        type: 'POST',
+        url: '/ac_connect.php',
+        data: 'function=smartOder&head='+ location.protocol ,        
+        error: function (xhr) {
+        },
+        beforeSend: function (response) {
+        
+        },
+            success: function (response) {
+            if(response!='')
+            {
+                window.location.href=response;
+            }
+        }
+    });
+    
+}
+
+function getMemberphone()
+ {
+     Actions = jQuery.ajax({
+        type: 'POST',
+        url: '/ac_memberInfo.php',
+        data:'member=getCell',
+        error: function(xhr) {
+
+        },
+        beforeSend: function(result) {
+           
+        },
+        success: function(answer) {
+          
+          var res=JSON.parse(answer);
+          var str='';
+          $('#area').empty();
+          var data=res.area;
+          for (var i in data)
+          {
+            str=str+'<option value='+i+'>'+data[i]+'</option>';
+          }
+          $('#area').append(str);
+        $('#cellnumber').val(res.mobile);
+        }
+    });
+ }
+
+ function sendSMS(change,callback)
+{
+    var data=new Object;
+    data['area']=change['area'];
+    data['mobile']=change['mobile'];
+    data['step']='sendSMS';
+    jQuery.ajax({
+        type: 'POST',
+        url: '/ac_sms.php',
+        data: data ,
+        error: function(xhr) {
+            return false;
+        },
+        beforeSend:function(response)
+        {
+            
+        },
+        success: function(answer) {
+            return callback(answer);
+        }
+    });
+}
+
+function ckeckSMS(change,callback)
+{
+    var data=new Object;
+    data['step']='checkSMS';
+    data['smscode']=change['smscode'];
+    data['area']=change['area'];
+    data['mobile']=change['mobile'];
+    jQuery.ajax({
+        type: 'POST',
+        url: '/ac_sms.php',
+        data: data ,
+        error: function(xhr) {
+            return false;
+        },
+        beforeSend:function(response)
+        {
+            
+        },
+        success: function(answer) {
+            return callback(answer);
+        }
+    });
+}
+
+function showstaypoint(resavepoint,notaccountmoney)
+{
+    msg( {"title":"",'reCode': "" ,"reMsg":"您尚有保留余额:<br>会员互转:"+resavepoint+"<br>未结算赛事:"+notaccountmoney,"nextUrl":""} );
+}
+
+function showMailSpot()
+{
+    var data=new Object;
+    data['type']='personalNoticeUnread';
+    jQuery.ajax({
+        type: 'POST',
+        url: '/ac_announce.php',
+        data: data ,
+        error: function(xhr) {
+            return false;
+        },
+        beforeSend:function(response)
+        {
+            
+        },
+        success: function(answer) {
+            if(parseInt(answer)<1) return;
+            $(".title_background .mail span").addClass('message_number').text(answer);
+        }
+    });
+    
+}
+
+
+function intoAssistant()
+{
+  Actions = jQuery.ajax({
+        type: 'POST',
+        url:  '/ac_assistant.php',
+        data: 'step=allow',
+            error: function(xhr)
+            {
+                
+            },
+            beforeSend:function(result)
+            {
+               
+            },
+            success: function(answer) 
+            {
+                var res = JSON.parse(answer);
+                if(res.reCode=='0')
+                {
+                   document.location.href=res.reMsg;
+                }
+                else
+                {
+                   msg( {"title":"","reCode":'' ,"reMsg":res.reMsg } );
+                }
+              
+            }
+    });
+}
+function getBroswer(){
+    var sys = {};
+    var ua = navigator.userAgent;
+    var uaLower=ua.toLowerCase();
+    var s;
+    var re =/(msie|firefox|chrome|opera|version|crios|baiduboxapp|).*?([\d.]+)/;
+    var m = ua.match(re);
+    var version = m[2];
+    (s = uaLower.match(/edge\/([\d.]+)/)) ? sys.edge = s[1] :0 ;                 //edge v
+    (s = uaLower.match(/rv:([\d.]+)\) like gecko/)) ? sys.ie = s[1] :0 ;         //ie
+    (s = uaLower.match(/msie ([\d.]+)/)) ? sys.ie = s[1] :0  ;                   //ie
+    (s = uaLower.match(/firefox\/([\d.]+)/)) ? sys.firefox = s[1] :0 ;           //firefox
+    (s = uaLower.match(/qqbrowser\/([\d.]+)/)) ? sys.qq = s[1] : 0;              //qq  v
+    (s = uaLower.match(/miuibrowser\/([\d.]+)/)) ? sys.xiaomi = s[1] : 0;             //xiaomi v
+    (s = uaLower.match(/(2345explorer|mb2345browser:?)\/([\d.]+)/)) ? sys.two345explorer = s[2] : 0; //2345 v
+    (s = uaLower.match(/baiduboxapp\/([\d.]+)/)) ? sys.baidu = s[1] :0 ;               //baidu v
+    (s = uaLower.match(/sogoumobilebrowser\/([\d.]+)/)) ? sys.sogo = s[1] :0 ;               //Sogo v
+    (s = uaLower.match(/ucbrowser\/([\d.]+)/)) ? sys.uc = s[1] :0 ;               //uc v
+    (s = uaLower.match(/maxthon\/([\d.]+)/)) ? sys.maxthon = s[1] :0 ;               //傲游 v
+    (s = uaLower.match(/(liebaofast|lbbrowser:?)\/([\d.]+)/))? sys.lbbrowser = s[2] :0 ;               //獵豹mb pc有兩種格式要分開寫 v
+    (s = uaLower.match(/vivobrowser\/([\d.]+)/)) ? sys.vivo = s[1] :0 ;               //vivo v
+    (s = uaLower.match(/chrome\/([\d.]+)/)) ? sys.chrome = s[1] :0;              //chrome v
+    (s = uaLower.match(/opera.([\d.]+)/)) ? sys.opera = s[1] :0;                 //opera
+    (s = uaLower.match(/version\/([\d.]+).*safari/)) ? sys.safari = s[1] : 0;    //safiri v
+    (s = uaLower.match(/micromessenger\/([\d.]+)/)) ? sys.wechat = s[1] : 0;     //wechat v
+
+
+    if (sys.edge) return { broswer : "4", version : version ,ua : ua};
+    if (sys.ie) return { broswer : "3", version : version,ua : ua };
+    if (sys.firefox) return { broswer : "6", version : version,ua : ua };
+    if( sys.qq) return { broswer : "12", version : version,ua : ua };
+    if (sys.two345explorer) return { broswer : "14", version : version,ua : ua };
+    if (sys.xiaomi) return { broswer : "16", version : version,ua : ua };
+    if( sys.baidu) return { broswer : "9", version : version,ua : ua };
+    if( sys.sogo) return { broswer : "10", version :version,ua : ua };
+    if( sys.uc) return { broswer : "11", version : version, ua : ua };
+    if( sys.maxthon) return { broswer : "15", version : version, ua : ua };
+    if( sys.lbbrowser) return { broswer : "13", version : sys.lbbrowser, ua : ua };
+    if( sys.vivo) return { broswer : "18", version : version, ua : ua };
+    if (sys.chrome) return { broswer : "1", version : version,ua : ua };
+    if (sys.opera) return { broswer : "23", version : version,ua : ua };
+    if (sys.safari) return { broswer : "2", version : version,ua : ua };
+    if (sys.wechat) return { broswer : "22", version : version,ua : ua };
+
+    return { broswer : "8", version : "0" ,  ua : ua};
+}
+
+function getVGA()
+{
+    var canvas = document.createElement('canvas');
+    var gl = canvas.getContext('experimental-webgl');
+    if(gl==null || gl==undefined)
+    {
+        return { locator : ''};
+    }
+    debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    locator=gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+    return { locator : locator}; 
+}
+function openMoney()
+{
+    $("#memberMoney").toggle();
+}
+
+// 浮點數相乘
+function mulFloat(num1,num2){
+    var m = 0, s1 = num1.toString(), s2 = num2.toString();
+    try{ 
+        m += s1.split(".")[1].length; 
+    }catch(e){ }
+    try{
+        m += s2.toString().split(".")[1].length;
+    } catch(e){ }
+  
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+  }
+  
+// 浮點數相除
+function divFloat(num1,num2){
+    var r1, r2, t1 = 0, t2 = 0;
+    try{ 
+        t1 = num1.toString().split(".")[1].length; 
+    }catch(e){ }
+    try{
+        t2 = num2.toString().split(".")[1].length;
+    } catch(e){ }
+    with(Math){
+        r1 = Number(num1.toString().replace(".", ""));
+        r2 = Number(num2.toString().replace(".", ""));
+        return (r1 / r2) * pow(10, t2 - t1);
+    }
+  }
+  
+  // 浮點數相加
+  function addFloat(num1,num2){
+      var r1, r2, m;
+      try{ 
+          r1 = num1.toString().split(".")[1].length; 
+      }catch(e){
+          r1 = 0; 
+      }
+      try{
+          r2 = num2.toString().split(".")[1].length;
+      } catch(e){
+          r2 = 0;
+      }
+      m = Math.pow(10, Math.max(r1, r2));
+      return (mulFloat(num1, m) + mulFloat(num2, m)) / m;
+  }
+  
+  // 浮點數相減
+  function subFloat(num1,num2){
+      var r1, r2, m, n;
+      try{ 
+          r1 = num1.toString().split(".")[1].length; 
+      }catch(e){
+          r1 = 0; 
+      }
+      try{
+          r2 = num2.toString().split(".")[1].length;
+      } catch(e){
+          r2 = 0;
+      }
+      m = Math.pow(10, Math.max(r1, r2));
+      n = (r1 >= r2) ? r1 : r2;
+      return ((num1 * m - num2 * m) / m).toFixed(n);
+  }

@@ -1,0 +1,471 @@
+/*註冊提示*/
+
+$(document).ready(function() {
+	if($("#ckmsg").val()=='999')
+	{
+		msg( {"status":"0","title":"","reCode":'[999]' ,"reMsg":"该注册链结已失效" ,'nextUrl':"/memberlogout.php"} );
+		//增加點擊黑底就導回首頁
+		$('#noticeModal').on('hide.bs.modal', function () {
+			directUrl('/memberlogout.php');
+		});
+	}
+    else if ($("#ckmsg").length > 0  && $("#ckmsg").val()!='' && $("#ckmsg").val()!='1000') {
+       
+	   msg( {"status":"0","title":"","reCode":'' ,"reMsg":"注册链结已失效，请联系客服人员" ,'nextUrl':"/memberlogout.php"} );
+	   $('.btn').remove();
+	   $('.modal-footer').prepend('<button type="button" class="btn btn-block btnNormal"onclick="get24HR('+"'serviceOnline'"+')" >立即联系<button type="button" class="btn btn-block btnNormal_close" onclick="javascript:location.href='+"'/memberlogout.php'"+'">关闭提示</button>');
+	   $('.btn-block').css('width','47%');
+			//增加點擊黑底就導回首頁
+		$('#noticeModal').on('hide.bs.modal', function () {
+			directUrl('/memberlogout.php');
+		});
+    }
+	var url=new URL(location.href);
+    var getcode=url.searchParams.get('code');
+    if(getcode==null)
+    {
+        $('#setAccContent .labelIsIcon .form-group:nth-child(2)').css('display','none');
+    }
+	
+});
+var registerData={};
+window.addEventListener("message", receiveMessage, true);
+function receiveMessage(event)
+{
+	directUrl('/memberlogout.php');
+}
+function register_s1()
+{
+	var checkform=1;
+	var url=new URL(location.href);
+	var getcode=url.searchParams.get('code');
+	if( $('#loginPwd').val()=='' ||  $('#loginPwd').val().length <6 || !$('#loginPwd').val().match(/^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$/g) )	
+	{
+		$('#step1').addClass('was-validated');
+		$('#tip_loginPwd').html('帐号密码请英数混合,至少6字元');
+		$('#loginPwd').val('');
+		$('#loginPwd2').val('');
+		checkform=0;
+	}
+	if( $('#parent').val()=='' && getcode!=null)	
+	{
+		$('#step1').addClass('was-validated');
+		$('#tip_parent').html('请输入推荐人帐号');
+		checkform=0;
+	}
+	if( $('#loginPwd').val()==''|| $('#loginPwd').val() != $('#loginPwd2').val() )
+	{
+		
+		$('#step1').addClass('was-validated');
+		$('#tip_loginPwd').html('检查帐号密码是否正确');
+		$('#tip_loginPwd2').html('检查帐号密码是否正确');
+		$('#loginPwd').val('');
+		$('#loginPwd2').val('');
+		checkform=0;
+	}
+	if( $('#nickname').val()=='' )
+	{
+		$('#step1').addClass('was-validated');
+		$('#tip_nickname').html('请输入昵称');
+		checkform=0;
+	}
+	else if( !ckeck_ch_eng_num($('#nickname').val()) )
+	{
+		//alert('不可输入特殊字符');
+		$('#step1').addClass('was-validated');
+		$('#tip_nickname').html('昵称不可输入特殊字符');
+		$('#nickname').val('');
+		checkform=0;
+	}
+	if($('#receivePwd').val()=='' ||  $('#receivePwd').val().length<6 || !$('#receivePwd').val().match(/^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$/g) )			
+	{
+		//alert('提领密码请英数混合,至少6字元');
+		$('#step1').addClass('was-validated');
+		$('#tip_receivePwd').html('提领密码请英数混合,至少6字元');
+		$('#tip_receivePwd2').html('提领密码请英数混合,至少6字元');
+		$('#receivePwd').val('');
+		$('#receivePwd2').val('');
+		checkform=0;
+	}
+	if($('#receivePwd').val()!= $('#receivePwd2').val())
+	{
+		//alert('请检查提领密码是否正确');
+		$('#step1').addClass('was-validated');
+		$('#tip_receivePwd').html('请检查提领密码是否正确');
+		$('#tip_receivePwd2').html('请检查提领密码是否正确');
+		$('#receivePwd').val('');
+		$('#receivePwd2').val('');
+		checkform=0;
+	}
+	if($('#receivePwd').val()== $('#loginPwd').val())
+	{
+		//alert('请检查提领密码是否正确');
+		$('#step1').addClass('was-validated');
+		$('#tip_receivePwd').html('提领密码不可与登入密码相同');
+		$('#tip_receivePwd2').html('请检查提领密码是否正确');
+		$('#receivePwd').val('');
+		$('#receivePwd2').val('');
+		checkform=0;
+	}
+	if( $('#email').val()!='' && ismail( $('#email').val() ) != true)
+	{
+		$('#step1').addClass('was-validated');
+		$('#tip_email').html('电邮帐号格式错误，请重新输入');
+		$('#eamil').val('');
+		checkform=0;
+	}
+	if( $("#getcode").val()!="999" && $('#getcode').val()!=getcode )
+	{
+		msg( {"title":"推广码失效","reCode":'' ,"reMsg":"推广码异常"} );
+		checkform=0;
+	}
+	if(checkform==1)
+	{
+		var change = new Object;
+		change['parent'] =$('#parent').val();
+		change['userName'] =$('#name').val();
+		change['nickName']=$('#nickname').val();
+		change['loginPwd']=$('#loginPwd').val();
+		change['receivePwd']=$('#receivePwd').val();
+		change['email']=$('#email').val();
+		change['random']=$('#random').val();
+		change['step']=1;
+		registerData['loginPwd']=change['loginPwd'];
+		registerData['receivePwd']=change['receivePwd'];
+		registerData['parent']=change['parent'];
+		adddd( change );
+		return;
+	}
+
+}
+
+
+
+
+function register_s2()
+{
+	var checkform=1;
+	if($('#realname').val()=='')
+	{
+		$('#step2').addClass('was-validated');
+		$('#tip_realname').html('汇款户名请输入中文或英文字');
+		$('#realname').val('');
+		checkform=0;
+	}
+	if( ckAccountName( $('#realname').val() ) != true )
+	{
+		$('#step2').addClass('was-validated');
+		$('#realname').val('');
+		var ckResult = ckAccountName( $('#realname').val() );
+		if( ckResult == 'Contains numbers' ) $('#tip_realname').html('汇款户名不可含数字');
+		if( ckResult == 'Contains symbols' ) $('#tip_realname').html('汇款户名不可含符号');
+		checkform=0;
+	}
+	if($('#question').val()==null || isNaN( $('#question').val() ) )
+	{
+		$('#step2').addClass('was-validated');
+		$('#question').attr('required',true);
+		$('#tip_question').html('请选择安全问题');
+		checkform=0;
+	}
+	if($('#ans').val()=='')
+	{
+		$('#ans').attr('required',true);
+		$('#step2').addClass('was-validated');
+		$('#tip_ans').html('请输入安全答案');
+		checkform=0;	
+	}
+	if(!ckeck_ch_eng_num($('#ans').val()) )
+	{
+		$('#ans').attr('required',true);
+		$('#tip_ans').html('不可输入特殊字符');
+		$('#step2').addClass('was-validated');
+		$('#ans').val('');
+		checkform=0;	
+	}
+	if ($('#mobile').val()=='' || $('#mobile').val().length<8 || isNaN($('#mobile').val()))
+	{
+		$('#step2').addClass('was-validated');
+		$('#tip_mobile').html('手机号码不足8位数字');
+		$('#tip_mobile').addClass('recheckcodeFeedback');
+		$('#mobile').val('');
+		checkform=0;
+	}
+	if($('#mobile_ans').val()!=1)
+	{	
+		checkform=0;
+		codecheck();
+	}
+	if(checkform==1)
+	{
+		var change= new Object;
+		change['AccountName']=$('#realname').val();
+		change['userName']=$('#userName').val();
+		change['mobile']=$('#area').val().trim()+'-'+$('#mobile').val().trim();
+		change['pointQuestion']=$('#question').val();
+		change['pointAnswer']=$('#ans').val();
+		change['browser']=equipmentInfo['broswer'];
+		change['random']=$('#random').val();
+        change['deviceInfo']=equipmentInfo['ua'];
+        change['vga']=equipmentInfo['vga'];
+		change['step']=2;
+		adddd(change);
+
+	}
+}
+
+
+function adddd(change)
+{	
+	Actions = jQuery.ajax({
+		type: 'POST',
+		url:  'ac_register.php',
+		data: change,
+		error: function(xhr)
+		{
+		},
+		beforeSend:function(result)
+		{
+		},
+		success: function(answer)
+		{
+			var res = JSON.parse( answer );
+			if(res.step==1)
+			{
+				if(res.reCode=="1026")
+				{
+					$('#step1').addClass('was-validated');
+					$('#tip_parent').html(res.reMsg);
+					$('#parent').val('');
+					checkform=0;
+					return false;
+				}
+				else if(res.reCode!='000')
+				{
+					msg( {"title":"","reCode":'' ,"reMsg":res.reMsg} );
+					return false;
+				}
+				$('#setAccContent').removeClass('active');
+				$('#setAcc').removeClass('active');
+				$('#securityCodeContent').addClass('active');
+				$('#securityCode').addClass('active');
+				$('#stepTitle').html('手机验证');
+				$('#securityCodeContent').append('<input id="userName" type="hidden" value="'+res.username.toUpperCase()+'">');
+			}
+			if(res.step==2)
+			{
+				var result=new Object;
+					result['title']  =(res.reCode!='0') ? '注册失败' : '注册完成';
+					result['notice'] =(res.reCode!='0') ? res.reMsg : '您还可以<a href="/memberlogout.php">绑定银行卡</a>，以方便您随时取款!';
+					result['img']    =(res.reCode!='0') ? 'failed.png' : 'success.png';
+					result['result'] =(res.reCode!='0') ? 'registeredFailed' : 'registeredSuccess';
+					result['next']   =(res.reCode!='0') ? '关闭' : '绑定银行卡';
+				
+				$('#securityCode').removeClass('active');
+				$('#securityCodeContent').removeClass('active');
+				$('#registered').addClass('active');
+				$('#registeredContent').addClass('active');
+				$('#stepTitle').html('');
+				$('#agentid').html('');
+				$('#register_title').html(result['title']);
+				$('#registeredImg').attr("src", "./template/img/register/" + result['img']);
+				$('#register_result').addClass(result['result']);
+				$('#register_result').css('display','flex');
+				$('#register_notice').html(result['notice']);
+				$('#register_next').html(result['next']);
+
+				if(res.reCode=='0')
+				{
+					if(registerData['parent']!=undefined)
+					{
+						$("#registeredContent").prepend('<p class="ans1">推荐人-'+registerData['parent'].toUpperCase()+'</p>');
+					}
+					var str="<p></p><p class='ans1'>您的帐号 : " + change['userName'] + "</p><p class='ans1'>登入密码 : " + registerData['loginPwd'] + "</p><p class='ans1'>提领密码 : " +  registerData['receivePwd']+"</p>";
+					$('#register_notice').append(str);
+					$(".btnsGroup").prepend('<button type="button" class="btnBorder">前往市场列表</button>').addClass('has2btn');
+					if(res.url!='' && res.url!=undefined && res.url!=null)
+					{
+						var img='<img src="'+res.url+'" >';
+						$('#activity_banner').append(img).attr('onclick','window.open("'+res.attachUrl+'")');
+					}
+				}
+			}
+		}
+	});
+}
+
+//傳送驗證碼 開始
+function mobilecheck() 
+{
+	
+	if($('#area').val()=='' || $('#area').val()==null)
+	{
+		$('#step2').addClass('was-validated');
+		return false;
+	}
+	if($('#mobile').val()=='' || $('#mobile').val().length<8 || isNaN($('#mobile').val()))
+	{
+		$('#step2').addClass('was-validated');
+		$('#tip_mobile').addClass('recheckcodeFeedback');
+		$('#tip_mobile').html('手机号码不足8位数字');
+		$('#mobile').val('');
+		return false;
+	}
+	else
+	{
+		$('#sendcode').attr("disabled", true);
+		var change = new Object;
+		change['mobile'] = $( '#area' ).val()+'-'+$( '#mobile' ).val();
+		change['step']='mobilecheck';
+		change['random']=$("#random").val();
+		Actions = jQuery.ajax({
+				type: 'POST',
+				url:  'ac_register.php',
+				data:change,
+				error: function(xhr)
+				{
+					
+				},
+				beforeSend:function(result)
+				{
+					
+				},
+				success: function(answer)
+				{
+			
+					var res = JSON.parse( answer );
+					if(res.reCode == "666")
+					{
+						$('#sendcode').attr('disabled',false);	
+						msg( {"title":"验证码发送","reCode":'['+res.reCode+']' ,"reMsg":res.reMsg} );
+					}
+					else
+					{
+						msg( {"title":"验证码发送","reCode":'['+res.reCode+']' ,"reMsg":res.reMsg} );
+						time();
+					}
+				}
+			});
+	}
+}
+
+var wait=60;
+function time() 
+{
+	if (wait == 0) {
+		$('#sendcode').attr('disabled',false);		
+		$('#sendcode').html("获取验证码");
+		wait = 60;
+	} else {
+		$('#sendcode').attr('disabled',true);		
+		$('#sendcode').html(wait + "秒") ;
+		wait--;
+		setTimeout(function() {
+			time()
+		},
+		1000)
+	}
+}
+
+function codecheck()
+{
+	if( $('#mobile').val() == '' || $('#mobile').val().length < 8 || isNaN( $('#mobile').val() ) || $( '#area' ).val() == '' )
+	{
+		//msg( {'status':0, 'title':'', 'text1':'请输入正确手机号', 'text2':'' } );
+		//alert('请输入正确手机号');
+		return false;
+	}
+	else if( isNaN( $('#code4').val() ) || $('#code4').val().length != 4 )
+	{
+		msg( {'title':'', 'reCode':'验证码验证', 'reMsg':'请输入正确数值验证码' } );
+		//alert('请输入正确数值验证码');
+		return false;
+	}
+	var change=new Object;
+	change['ckCode']	 = $('#code4').val();
+	change['mobile']	 = $( '#area' ).val()+'-'+$( '#mobile' ).val();
+	change['step'] = 'ckCode';
+	Actions = jQuery.ajax({
+			type: 'POST',
+			url:  'ac_register.php',
+			data: change,
+			error: function(xhr)
+			{
+				//alert('error');
+			},
+			beforeSend:function(result)
+			{
+				//loadingCtrl( 1 );	
+			},
+			success: function(answer)
+			{
+				//loadingCtrl( 0 );
+				var res = JSON.parse( answer );
+				if( res.reCode == '000' )
+				{
+					$('#ckcode4').remove();
+					$('#ckcode4_result').removeAttr('hidden');
+					$('#code4').attr('readonly','readonly');
+					$('#mobile').attr('readonly','readonly');
+					$('#area').attr('disabled','disabled');
+					$('#step2').append('<input type="hidden" id="mobile_ans" value="1">');
+					$('#sendcode').remove();
+					register_s2();
+				}
+				else
+				{
+					msg( {'title':'', 'reCode':'['+res.reCode+']', 'reMsg': res.reMsg } );
+				
+				}
+				
+				
+			}
+		});
+}
+
+
+function ckaid()
+{
+	// if(countaid==0) return false;
+	//console.log(ckaid);
+	// countaid-=1;
+	if($('#agent').val()=='') return register_s2();
+	var change=new Object;
+	//var agent_key=$('#agent').val().split('/');
+	//var agent=($('#agent').val()!='') ? $('#agent').val() : '';
+	change['agent'] = $('#agent').val() ;
+	change['random']= $('#random').val();
+	change['step']='getAid';
+	Actions = jQuery.ajax({
+			type: 'POST',
+			url:  'ac_register.php',
+			data: change,
+			error: function(xhr)
+			{
+				//alert('error');
+			},
+			beforeSend:function(result)
+			{
+				//loadingCtrl( 1 );	
+			},
+			success: function(answer)
+			{
+				//loadingCtrl( 0 );
+				//return answer;
+				
+				if(answer!='000')
+				{
+				 msg( {"status":"0","title":"","reCode":'' ,"reMsg":"注册链结已失效，请联系客服人员" ,'nextUrl':"/memberlogout.php"} );
+				 $('.btn').remove();
+				 $('.modal-footer').prepend('<button type="button" class="btn btn-block btnNormal"onclick="get24HR('+"'serviceOnline'"+')" >立即联系<button type="button" class="btn btn-block btnNormal_close"  onclick="javascript:location.href='+"'/memberlogout.php'"+'">关闭视窗</button>');
+				 $('.btn-block').css('width','47%');
+				}
+				else
+				{
+					register_s2();
+				}
+			}
+		});
+}
+
+   

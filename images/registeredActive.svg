@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+    <defs>
+        <style>
+            .cls-1{opacity:.9;fill:url(#linear-gradient)}.cls-2{fill:#fff}.cls-3{filter:url(#Ellipse_651)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#8dddfa"/>
+            <stop offset="1" stop-color="#419df2"/>
+        </linearGradient>
+        <filter id="Ellipse_651" width="300" height="300" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset/>
+            <feGaussianBlur result="blur" stdDeviation="10"/>
+            <feFlood flood-opacity=".2"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="Group_73480" data-name="Group 73480" transform="translate(-1029 -293)">
+        <g class="cls-3" transform="translate(1029 293)">
+            <circle id="Ellipse_651-2" cx="120" cy="120" r="120" class="cls-1" data-name="Ellipse 651" transform="translate(30 30)"/>
+        </g>
+        <g id="Group_1337" data-name="Group 1337" transform="translate(-37.341 -24.341)">
+            <path id="Exclusion_3" d="M76.5 153A76.52 76.52 0 0 1 46.723 6.012a76.52 76.52 0 0 1 59.554 140.976A76.018 76.018 0 0 1 76.5 153zm0-138.834A62.333 62.333 0 1 0 138.833 76.5 62.4 62.4 0 0 0 76.5 14.166z" class="cls-2" data-name="Exclusion 3" transform="translate(1140.341 391.341)"/>
+            <path id="Union_4" d="M21.434 56.54a8.465 8.465 0 0 1-5.4-2.547L2.515 40.147a8.939 8.939 0 0 1 0-12.431 8.443 8.443 0 0 1 12.14 0l6.929 7.1L53 2.64a8.656 8.656 0 0 1 12.446 0l1.029 1.052a9.168 9.168 0 0 1 0 12.745l-36.815 37.7a8.655 8.655 0 0 1-8.228 2.4z" class="cls-2" data-name="Union 4" transform="translate(1181.889 442.617)"/>
+        </g>
+    </g>
+</svg>

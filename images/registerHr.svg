@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+    <defs>
+        <clipPath id="clip-path">
+            <path id="Rectangle_36016" d="M0 0H90V90H0z" class="cls-1" transform="translate(633 1613)"/>
+        </clipPath>
+        <style>
+            .cls-1{fill:#283763}
+        </style>
+    </defs>
+    <g id="com_body_atmcard_ic" clip-path="url(#clip-path)" transform="translate(-633 -1613)">
+        <g id="Group_1336" transform="translate(464.624 1361.167)">
+            <path id="Path_3603" d="M247.126 263.833h-67.5a11.418 11.418 0 0 0-11.25 11.556v2.311h90v-2.311a11.421 11.421 0 0 0-11.25-11.556z" class="cls-1"/>
+            <path id="Path_3604" d="M168.376 298.652a11.418 11.418 0 0 0 11.25 11.556h67.5a11.421 11.421 0 0 0 11.25-11.556v-30.045h-90zm71.25-12.84a5.138 5.138 0 1 1-5 5.138 5.072 5.072 0 0 1 5-5.138zm-12.5 0a5.138 5.138 0 1 1-5 5.138 5.072 5.072 0 0 1 5-5.138z" class="cls-1" transform="translate(0 19.625)"/>
+        </g>
+    </g>
+</svg>
